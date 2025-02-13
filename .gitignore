@@ -29,7 +29,7 @@ firebase-admin.json
 
 # Auth and security
 src/utils/generateAuthCode.js
-src/utils/adminTools.js
+src/utils/adminTools.dev.js
 
 # IDE specific files
 .idea/
