@@ -324,4 +324,31 @@
 .project-comments-section h3 {
   color: #007bff;
   margin-bottom: 1.5rem;
+}
+
+/* Add to existing styles */
+@media screen and (max-width: 768px) {
+  .updates-modal {
+    width: 90%;
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+
+  .update-item {
+    padding: 1rem;
+  }
+
+  .update-actions {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .update-actions button {
+    width: 100%;
+  }
+
+  .comments-section {
+    margin-top: 1rem;
+    padding-top: 1rem;
+  }
 } 

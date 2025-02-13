@@ -124,3 +124,250 @@
   color: white;
   font-family: 'Orbitron', sans-serif;
 }
+
+/* Add responsive styles */
+@media screen and (max-width: 768px) {
+  .navbar {
+    padding: 0.8rem;
+  }
+
+  .navbar-logo {
+    height: 25px;
+  }
+
+  .navbar-right {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    height: 100vh;
+    width: 70%;
+    background-color: rgba(0, 0, 0, 0.95);
+    padding: 80px 20px 20px;
+    flex-direction: column;
+    align-items: center;
+    transition: right 0.3s ease;
+    overflow-y: auto;
+  }
+
+  .navbar-right.show {
+    right: 0;
+  }
+
+  .user-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1rem;
+  }
+
+  .dropdown {
+    position: static;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1rem 0;
+  }
+
+  .dropdown-button {
+    position: static;
+    width: auto;
+    margin-bottom: 0.5rem;
+  }
+
+  .dropdown-content {
+    position: static;
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    background-color: transparent;
+    box-shadow: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .dropdown.active .dropdown-content {
+    display: flex;
+  }
+
+  .dropdown-content a {
+    text-align: center;
+    padding: 0.75rem 1rem;
+    width: auto;
+    min-width: 120px;
+    margin: 0.2rem 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 4px;
+  }
+
+  .dropdown,
+  .dropdown-button,
+  .dropdown-content,
+  .dropdown-content a {
+    transform: none;
+    left: auto;
+    right: auto;
+    top: auto;
+  }
+
+  /* Animate hamburger menu */
+  .hamburger-menu.active span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+  }
+
+  .hamburger-menu.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger-menu.active span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+  }
+
+  .dropdown-content a {
+    font-size: 0.9rem;
+    padding: 0.6rem 0.8rem;
+  }
+
+  .user-name {
+    font-size: 0.9rem;
+  }
+
+  .sign-in-button {
+    font-size: 0.85rem;
+  }
+
+  .dropdown-button {
+    font-size: 0.85rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .navbar {
+    padding: 0.6rem;
+  }
+
+  .navbar-logo {
+    height: 20px;
+  }
+
+  .user-name {
+    display: none;
+  }
+
+  .sign-in-button {
+    font-size: 0.8rem;
+    padding: 0.35rem 0.8rem;
+  }
+
+  .dropdown-button,
+  .dropdown-content {
+    width: auto;
+  }
+
+  .dropdown-button {
+    padding: 0.35rem 0.8rem;
+  }
+
+  .navbar-right {
+    width: 85%;
+  }
+}
+
+/* Add this for very small screens */
+@media screen and (max-width: 360px) {
+  .navbar-logo {
+    height: 18px;
+  }
+
+  .sign-in-button,
+  .dropdown-button {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.6rem;
+  }
+}
+
+/* Add these new styles */
+.hamburger-menu {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.hamburger-menu span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background-color: white;
+  transition: all 0.3s ease;
+}
+
+@media screen and (max-width: 768px) {
+  .hamburger-menu {
+    display: flex;
+  }
+
+  .navbar-right {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    height: 100vh;
+    width: 70%;
+    background-color: rgba(0, 0, 0, 0.95);
+    padding: 80px 20px 20px;
+    flex-direction: column;
+    align-items: center;
+    transition: right 0.3s ease;
+  }
+
+  .navbar-right.show {
+    right: 0;
+  }
+
+  .user-section {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .dropdown-content {
+    position: relative;
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  .dropdown-content a {
+    text-align: center;
+  }
+
+  /* Animate hamburger menu */
+  .hamburger-menu.active span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+  }
+
+  .hamburger-menu.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger-menu.active span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .navbar-right {
+    width: 85%;
+  }
+}
+
+/* Prevent any shifting */
+.dropdown,
+.dropdown-button,
+.dropdown-content {
+  transform-origin: top center;
+}

@@ -1,0 +1,46 @@
+@media screen and (max-width: 768px) {
+  .welcome-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .welcome-message {
+    font-size: 1rem;
+    line-height: 1.4;
+    padding: 0 1rem;
+  }
+
+  /* Target the specific welcome text */
+  .welcome-text {
+    font-size: 4vw !important;
+    margin: 1.5rem auto;
+    width: 90%;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .welcome-title {
+    font-size: 1.2rem;
+  }
+
+  .welcome-message {
+    font-size: 0.9rem;
+    padding: 0 0.8rem;
+  }
+
+  .welcome-text {
+    font-size: 3vw !important;
+    margin: 1rem auto;
+    max-width: 80%;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .welcome-text {
+    font-size: 2.5vw !important;
+    margin: 0.8rem auto;
+    letter-spacing: 1px;
+    max-width: 70%;
+  }
+} 

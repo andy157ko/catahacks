@@ -9,7 +9,7 @@ import { useAuth } from '../contexts/AuthContext';
 import { signOut } from 'firebase/auth';
 import { auth } from '../firebase';
 import ProjectsGrid from './ProjectsGrid';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -20,6 +20,7 @@ const Navbar = () => {
   const [selectedClass, setSelectedClass] = useState(null);
   const { currentUser } = useAuth();
   const navigate = useNavigate();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -42,24 +43,26 @@ const Navbar = () => {
     <>
       <nav className="navbar">
         <div className="navbar-left">
-          <a href="/" className="logo-link">
+          <Link to="/" className="logo-link">
             <img src={logo} alt="Logo" className="navbar-logo" />
-          </a>
+          </Link>
         </div>
         
-        <div className="navbar-right">
-          <div className="dropdown">
+        <div className="hamburger-menu" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        <div className={`navbar-right ${isMenuOpen ? 'show' : ''}`}>
+          <div className={`dropdown ${isDropdownOpen ? 'active' : ''}`}>
             <button className="dropdown-button" onClick={toggleDropdown}>
-              Class
-              <span className="dropdown-arrow">▼</span>
+              Class <span className="dropdown-arrow">▼</span>
             </button>
-            
-            {isDropdownOpen && (
-              <div className="dropdown-content">
-                <a style={{ cursor: 'pointer' }} onClick={() => handleClassSelect('F24')}>F24</a>
-                <a style={{ cursor: 'pointer' }} onClick={() => handleClassSelect('S25')}>S25</a>
-              </div>
-            )}
+            <div className="dropdown-content">
+              <a style={{ cursor: 'pointer' }} onClick={() => handleClassSelect('F24')}>F24</a>
+              <a style={{ cursor: 'pointer' }} onClick={() => handleClassSelect('S25')}>S25</a>
+            </div>
           </div>
 
           {currentUser && (
