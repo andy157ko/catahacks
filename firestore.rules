@@ -1,0 +1,48 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Allow users to read/write their own profile
+    match /userProfiles/{userId} {
+      allow read: if true;
+      allow write: if request.auth != null && request.auth.uid == userId;
+      
+      match /updates/{updateId} {
+        allow read, write: if request.auth != null && request.auth.uid == userId;
+      }
+    }
+    
+    // Allow authenticated users to submit projects and anyone to read them
+    match /projects/{projectId} {
+      allow read: if true;
+      allow create: if request.auth != null;
+      allow update, delete: if request.auth != null && 
+        request.auth.uid == resource.data.userId;
+        
+      // Allow authenticated users to add comments and anyone to read them
+      match /comments/{commentId} {
+        allow read: if true;
+        allow create: if request.auth != null;
+        allow update, delete: if request.auth != null && 
+          request.auth.uid == resource.data.userId;
+      }
+    }
+    
+    // Updates can only be written by project owners
+    match /updates/{updateId} {
+      allow read: if true;
+      allow write: if request.auth != null 
+        && exists(/databases/$(database)/documents/projects/$(request.resource.data.projectId))
+        && get(/databases/$(database)/documents/projects/$(request.resource.data.projectId)).data.userId == request.auth.uid;
+    }
+    
+    // Auth codes collection
+    match /authCodes/{code} {
+      allow read, write: if true;
+    }
+    
+    // Default rule
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+} 
