@@ -178,7 +178,6 @@
 
   .dropdown-content {
     position: static;
-    display: none;
     width: 100%;
     flex-direction: column;
     align-items: center;
@@ -186,10 +185,6 @@
     box-shadow: none;
     margin: 0;
     padding: 0;
-  }
-
-  .dropdown.active .dropdown-content {
-    display: flex;
   }
 
   .dropdown-content a {
@@ -336,9 +331,14 @@
   }
 
   .dropdown-content {
-    position: relative;
+    position: static;
     width: 100%;
-    margin-top: 1rem;
+    flex-direction: column;
+    align-items: center;
+    background-color: transparent;
+    box-shadow: none;
+    margin: 0;
+    padding: 0;
   }
 
   .dropdown-content a {

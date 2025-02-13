@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Navbar.css';
 import logo from '../catalystlogo.png';
 import SignInModal from './SignInModal';
@@ -21,6 +21,21 @@ const Navbar = () => {
   const { currentUser } = useAuth();
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 768) {
+        setIsDropdownOpen(false);
+        setIsMenuOpen(false);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -59,10 +74,12 @@ const Navbar = () => {
             <button className="dropdown-button" onClick={toggleDropdown}>
               Class <span className="dropdown-arrow">▼</span>
             </button>
-            <div className="dropdown-content">
-              <a style={{ cursor: 'pointer' }} onClick={() => handleClassSelect('F24')}>F24</a>
-              <a style={{ cursor: 'pointer' }} onClick={() => handleClassSelect('S25')}>S25</a>
-            </div>
+            {isDropdownOpen && (
+              <div className="dropdown-content">
+                <a style={{ cursor: 'pointer' }} onClick={() => handleClassSelect('F24')}>F24</a>
+                <a style={{ cursor: 'pointer' }} onClick={() => handleClassSelect('S25')}>S25</a>
+              </div>
+            )}
           </div>
 
           {currentUser && (
