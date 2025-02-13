@@ -19,7 +19,6 @@
 .env.*
 
 # Firebase config and admin
-src/firebase.js
 .firebase/
 firebase-debug.log
 firestore-debug.log
